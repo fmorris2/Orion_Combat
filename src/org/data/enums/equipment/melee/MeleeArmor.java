@@ -2,6 +2,7 @@ package org.data.enums.equipment.melee;
 
 public enum MeleeArmor
 {
+	WOODEN_SHIELD(0, 50, 1171, false),
 	LEATHER_BOOTS(1, 100, 1061, true),
 	LEATHER_GLOVES(1, 100, 1059, true),
 	RED_CAPE(1, 200, 1007, true),

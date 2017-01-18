@@ -2,6 +2,7 @@ package org.data.enums.equipment.melee;
 
 public enum MeleeWeapon
 {
+	BRONZE_SWORD(0, 50, 1277),
 	IRON_SCIMITAR(1, 150, 1323),
 	STEEL_SCIMITAR(5, 200, 1325),
 	MITHRIL_SCIMITAR(20, 750, 1329),

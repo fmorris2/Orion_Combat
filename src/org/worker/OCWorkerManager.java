@@ -61,6 +61,11 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		}
 		
 		//has required equipment, inventory is not full
+		return locChecks();
+	}
+	
+	private OCWorker locChecks()
+	{
 		CombatLocation loc = mission.getLocation();
 		if(loc.isIn(myPlayer()))
 		{
