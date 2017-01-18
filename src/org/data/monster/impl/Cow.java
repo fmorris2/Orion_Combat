@@ -15,13 +15,19 @@ public class Cow extends Monster
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 12;
+		return 15;
 	}
 
 	@Override
 	protected String[] getNames()
 	{
 		return new String[]{"Cow", "Cow calf"};
+	}
+
+	@Override
+	protected boolean needsFood()
+	{
+		return false;
 	}
 
 }

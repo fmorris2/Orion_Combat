@@ -23,4 +23,10 @@ public class Chicken extends Monster
 		return new String[]{"Chicken"};
 	}
 
+	@Override
+	protected boolean needsFood()
+	{
+		return false;
+	}
+
 }

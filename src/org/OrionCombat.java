@@ -4,8 +4,10 @@ import org.data.enums.CombatType;
 import org.data.enums.LOCATION;
 import org.data.enums.MONSTER;
 import org.data.enums.equipment.EquipmentIMGenerator;
+import org.data.enums.equipment.Food;
 import org.data.location.CombatLocation;
 import org.data.monster.Monster;
+import org.worker.OCWorkerManager;
 
 import viking.framework.goal.Goal;
 import viking.framework.goal.GoalList;
@@ -16,21 +18,33 @@ import viking.framework.mule.MuleManagement;
 import viking.framework.mule.MuleOrder;
 import viking.framework.script.VikingScript;
 
-public class Orion_Combat extends Mission implements ItemManagement, MuleManagement
+public class OrionCombat extends Mission implements ItemManagement, MuleManagement
 {
-	public final CombatType COMBAT_TYPE;
+	private static final int CYCLE_TIME = 600;
 	
-	private final MONSTER TARGET;
+	public final CombatType COMBAT_TYPE;
+	public final OC_EquipmentManager EQUIPMENT_MANAGER;
+	public final boolean IS_LOOTING;
+	public final MONSTER TARGET;
+	
+	private final OCWorkerManager MANAGER;
+	private final OC_ProgressionManager PROGRESSION;
+	
+	public Food food;
 	
 	private MONSTER monster;
 	private LOCATION location;
 	
-	public Orion_Combat(VikingScript script, CombatType combatType, MONSTER target, Goal... goals)
+	public OrionCombat(VikingScript script, CombatType combatType, MONSTER target, boolean isLooting, Goal... goals)
 	{
 		super(script);
 		this.goals = new GoalList(goals);
 		COMBAT_TYPE = combatType;
 		TARGET = target;
+		IS_LOOTING = isLooting;
+		MANAGER = new OCWorkerManager(this);
+		PROGRESSION = new OC_ProgressionManager(this);
+		EQUIPMENT_MANAGER = new OC_EquipmentManager(this);
 	}
 
 	@Override
@@ -48,7 +62,7 @@ public class Orion_Combat extends Mission implements ItemManagement, MuleManagem
 	@Override
 	public String getCurrentTaskName()
 	{
-		return null;
+		return MANAGER.getCurrent().toString();
 	}
 
 	@Override
@@ -65,33 +79,28 @@ public class Orion_Combat extends Mission implements ItemManagement, MuleManagem
 
 	@Override
 	public String[] getMissionPaint()
-	{
-		return null;
-	}
+	{return null;}
 
 	@Override
 	public int execute()
 	{
-		return 600;
+		PROGRESSION.progress();
+		MANAGER.work();
+		return CYCLE_TIME;
 	}
 
 	@Override
 	public void onMissionStart()
-	{
-		//set appropriate monster if necessary
-		
-		//set appropriate location if necessary
-	}
+	{}
 
 	@Override
 	public void resetPaint()
-	{
-	}
+	{}
 
 	@Override
 	public MuleOrder getOrder()
 	{
-		return new MuleOrder(script, getMonster().LOOT);
+		return new MuleOrder(script, getMonster().LOOT_IDS);
 	}
 
 	@Override
@@ -103,7 +112,7 @@ public class Orion_Combat extends Mission implements ItemManagement, MuleManagem
 	@Override
 	public int[] itemsToSell()
 	{
-		return getMonster().LOOT;
+		return getMonster().LOOT_IDS;
 	}
 	
 	public Monster getMonster()
@@ -111,8 +120,23 @@ public class Orion_Combat extends Mission implements ItemManagement, MuleManagem
 		return monster.MONSTER;
 	}
 	
+	public void setMonster(MONSTER m)
+	{
+		monster = m;
+	}
+	
 	public CombatLocation getLocation()
 	{
 		return location.LOCATION;
+	}
+	
+	public LOCATION getLocEnum()
+	{
+		return location;
+	}
+	
+	public void setLocation(LOCATION loc)
+	{
+		location = loc;
 	}
 }
