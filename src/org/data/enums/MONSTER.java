@@ -23,7 +23,7 @@ public enum MONSTER
 	public static MONSTER getAppropriate(Combat combat)
 	{
 		final int PLAYER_LVL = combat.getCombatLevel();
-		for(int i = values().length; i >= 0; i--)
+		for(int i = values().length - 1; i >= 0; i--)
 			if(values()[i].MONSTER.REQUIRED_COMBAT_LVL <= PLAYER_LVL)
 				return values()[i];
 		
