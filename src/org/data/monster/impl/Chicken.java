@@ -5,10 +5,10 @@ import org.data.monster.Monster;
 public class Chicken extends Monster
 {
 	@Override
-	protected int[] getLoot()
+	protected int[][] getLoot()
 	{
 		//bones, feather, raw chicken
-		return new int[]{526, 314, 2138};
+		return new int[][]{{526, 0}, {314, 1}, {2138, 0}};
 	}
 
 	@Override

@@ -6,10 +6,10 @@ public class Cow extends Monster
 {
 
 	@Override
-	protected int[] getLoot()
+	protected int[][] getLoot()
 	{
 		//cowhide is only thing worth looting
-		return new int[]{1739};
+		return new int[][]{{1739, 1}};
 	}
 
 	@Override
