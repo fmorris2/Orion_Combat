@@ -23,7 +23,7 @@ public class OC_ProgressionManager
 		final Monster NEW = APPROP.MONSTER;
 		final Monster TARGET = mission.TARGET.MONSTER;
 		
-		if(OLD == TARGET || OLD == NEW)
+		if(OLD != null && (OLD == TARGET || OLD == NEW))
 			return false;
 		
 		mission.setMonster(APPROP);
