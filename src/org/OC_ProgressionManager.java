@@ -19,7 +19,7 @@ public class OC_ProgressionManager
 		
 		final MONSTER APPROP = MONSTER.getAppropriate(mission.combat);
 		
-		final Monster OLD = mission.getMonster();
+		final Monster OLD = mission.getMonsterEnum() == null ? null : mission.getMonster();
 		final Monster NEW = APPROP.MONSTER;
 		final Monster TARGET = mission.TARGET.MONSTER;
 		

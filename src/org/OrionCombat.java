@@ -141,6 +141,11 @@ public class OrionCombat extends Mission implements ItemManagement, MuleManageme
 		return location;
 	}
 	
+	public MONSTER getMonsterEnum()
+	{
+		return monster;
+	}
+	
 	public void setLocation(LOCATION loc)
 	{
 		location = loc;
