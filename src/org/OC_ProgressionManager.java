@@ -21,7 +21,7 @@ public class OC_ProgressionManager
 		
 		final Monster OLD = mission.getMonsterEnum() == null ? null : mission.getMonster();
 		final Monster NEW = APPROP.MONSTER;
-		final Monster TARGET = mission.TARGET.MONSTER;
+		final Monster TARGET = mission.TARGET == null ? null : mission.TARGET.MONSTER;
 		
 		if(OLD != null && (OLD == TARGET || OLD == NEW))
 			return false;
