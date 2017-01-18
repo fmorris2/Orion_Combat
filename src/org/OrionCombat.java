@@ -116,8 +116,8 @@ public class OrionCombat extends Mission implements ItemManagement, MuleManageme
 	}
 	
 	public Monster getMonster()
-	{
-		return monster.MONSTER;
+	{	
+		return monster == null ? null : monster.MONSTER;
 	}
 	
 	public void setMonster(MONSTER m)
@@ -127,7 +127,7 @@ public class OrionCombat extends Mission implements ItemManagement, MuleManageme
 	
 	public CombatLocation getLocation()
 	{
-		return location.LOCATION;
+		return location == null ? null : location.LOCATION;
 	}
 	
 	public LOCATION getLocEnum()
