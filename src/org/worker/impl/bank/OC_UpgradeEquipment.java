@@ -1,5 +1,7 @@
 package org.worker.impl.bank;
 
+import java.util.List;
+
 import org.OrionCombat;
 import org.worker.OCWorker;
 
@@ -19,6 +21,8 @@ public class OC_UpgradeEquipment extends OCWorker
 	@Override
 	public void work()
 	{
+		List<Integer> upgrades = mission.EQUIPMENT_MANAGER.getUpgrades();
+		script.log(this, false, "Upgrade equipment - " + upgrades.size() + " upgrades");
 	}
 
 }

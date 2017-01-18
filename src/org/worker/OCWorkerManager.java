@@ -1,8 +1,11 @@
 package org.worker;
 
+import java.util.List;
+
 import org.OrionCombat;
 import org.data.enums.CombatType;
 import org.data.location.CombatLocation;
+import org.osbot.rs07.api.model.Item;
 import org.worker.impl.bank.OC_DepositItems;
 import org.worker.impl.bank.OC_GoToBank;
 import org.worker.impl.bank.OC_UpgradeEquipment;
@@ -36,11 +39,12 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	@Override
 	public Worker<OrionCombat> decide()
 	{
+		final boolean IN_BANK = mission.bankUtils.isInBank(false);
 		//check bank if cache is empty, if it is we need to go check the bank
 		if(mission.getScript().BANK_CACHE.get().isEmpty())
 		{
 			debug("Bank cache is empty, going to bank to fill it...");
-			return mission.bankUtils.isInBank(false) ? DEPOSIT_ITEMS : GO_TO_BANK;
+			return IN_BANK ? DEPOSIT_ITEMS : GO_TO_BANK;
 		}
 		
 		//check for equipment upgrades
@@ -54,10 +58,16 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		{
 			debug("Inventory full checks");
 			
-			if(mission.bankUtils.isInBank(false))
+			if(IN_BANK)
 				return DEPOSIT_ITEMS;
 			
 			return GO_TO_BANK;
+		}
+		
+		if(IN_BANK && hasErroneousItems())
+		{
+			debug("Depositing erroneous items...");
+			return DEPOSIT_ITEMS;
 		}
 		
 		//has required equipment, inventory is not full
@@ -79,6 +89,16 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 			debug("Player is not at location");
 			return GO_TO_LOCATION;
 		}
+	}
+	
+	private boolean hasErroneousItems()
+	{
+		List<Integer> dontDeposit = ((OC_DepositItems)DEPOSIT_ITEMS).getDontDepositList();
+		for(Item i : inventory.getItems())
+			if(i != null && !dontDeposit.contains(i.getId()))
+				return true;
+			
+		return false;
 	}
 	
 	private void debug(String s)

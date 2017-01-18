@@ -36,7 +36,18 @@ public class OC_DepositItems extends OCWorker
 		}
 	}
 	
-	private int[] getDontDeposit()
+	public int[] getDontDeposit()
+	{
+		List<Integer> dontDeposit = getDontDepositList();
+		
+		int[] dontDepositArr = new int[dontDeposit.size()];
+		for(int i = 0; i < dontDeposit.size(); i++)
+			dontDepositArr[i] = dontDeposit.get(i).intValue();
+				
+		return dontDepositArr;
+	}
+	
+	public List<Integer> getDontDepositList()
 	{
 		List<Integer> dontDeposit = new ArrayList<>();
 		
@@ -55,11 +66,7 @@ public class OC_DepositItems extends OCWorker
 				dontDeposit.add(i);
 		}
 		
-		int[] dontDepositArr = new int[dontDeposit.size()];
-		for(int i = 0; i < dontDeposit.size(); i++)
-			dontDepositArr[i] = dontDeposit.get(i).intValue();
-				
-		return dontDepositArr;
+		return dontDeposit;
 	}
 
 }
