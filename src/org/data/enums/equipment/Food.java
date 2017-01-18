@@ -19,7 +19,7 @@ public enum Food
 	public static Food getApprop(int combatLevel)
 	{
 		final Food[] VALS = values();
-		for(int i = VALS.length - 1; i >= 0; i++)
+		for(int i = VALS.length - 1; i >= 0; i--)
 			if(VALS[i].USE_AT <= combatLevel)
 				return VALS[i];
 		
