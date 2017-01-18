@@ -29,4 +29,10 @@ public class Chicken extends Monster
 		return false;
 	}
 
+	@Override
+	protected int[] getRequiredItems()
+	{
+		return null;
+	}
+
 }

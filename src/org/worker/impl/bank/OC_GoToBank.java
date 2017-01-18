@@ -20,6 +20,8 @@ public class OC_GoToBank extends OCWorker
 	@Override
 	public void work()
 	{
+		script.log(this, false, "Go to bank");
+		walking.webWalk(bankUtils.getAllBanks(false, false));
 	}
 
 }

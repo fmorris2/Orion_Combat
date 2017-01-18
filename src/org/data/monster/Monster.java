@@ -4,6 +4,7 @@ public abstract class Monster
 {
 	public final int[][] LOOT;
 	public final int[] LOOT_IDS;
+	public final int[] REQUIRED_ITEMS;
 	public final int REQUIRED_COMBAT_LVL;
 	public final String[] NAMES;
 	public final boolean NEEDS_FOOD;
@@ -15,12 +16,14 @@ public abstract class Monster
 		REQUIRED_COMBAT_LVL = getRequiredCombatLvl();
 		NAMES = getNames();
 		NEEDS_FOOD = needsFood();
+		REQUIRED_ITEMS = getRequiredItems();
 	}
 	
 	protected abstract int[][] getLoot();
 	protected abstract int getRequiredCombatLvl();
 	protected abstract String[] getNames();
 	protected abstract boolean needsFood();
+	protected abstract int[] getRequiredItems();
 	
 	private int[] parseLootIds()
 	{

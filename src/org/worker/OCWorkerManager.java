@@ -54,7 +54,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		{
 			debug("Inventory full checks");
 			
-			if(mission.bankUtils.isInBank(true))
+			if(mission.bankUtils.isInBank(false))
 				return DEPOSIT_ITEMS;
 			
 			return GO_TO_BANK;

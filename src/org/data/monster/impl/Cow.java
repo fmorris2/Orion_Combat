@@ -30,4 +30,10 @@ public class Cow extends Monster
 		return false;
 	}
 
+	@Override
+	protected int[] getRequiredItems()
+	{
+		return null;
+	}
+
 }

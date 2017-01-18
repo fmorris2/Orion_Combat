@@ -31,5 +31,17 @@ public class LumbridgeChickens extends CombatLocation
 	{
 		return MONSTER.CHICKEN;
 	}
+
+	@Override
+	protected int[] getRequiredItems()
+	{
+		return null;
+	}
+
+	@Override
+	protected Position[] getSafeSpots()
+	{
+		return null;
+	}
 	
 }
