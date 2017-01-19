@@ -99,7 +99,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		CombatLocation loc = mission.getLocation();
 		if(loc.isIn(myPlayer()))
 		{
-			if(needsToLoot || LOOT.needsToLoot())
+			if(!myPlayer().isUnderAttack() && !combat.isFighting() && (needsToLoot || LOOT.needsToLoot()))
 			{
 				needsToLoot = false;
 				return LOOT;
