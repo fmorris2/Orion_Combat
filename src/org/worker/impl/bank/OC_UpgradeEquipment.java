@@ -29,6 +29,8 @@ public class OC_UpgradeEquipment extends OCWorker
 		else
 		{
 			script.log(this, false, "Equip upgrades");
+			for(int i : upgrades)
+				itemUtils.wield(i);
 		}
 		
 	}
