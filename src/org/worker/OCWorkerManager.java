@@ -9,6 +9,7 @@ import org.osbot.rs07.api.model.Item;
 import org.worker.impl.bank.OC_DepositItems;
 import org.worker.impl.bank.OC_GoToBank;
 import org.worker.impl.bank.OC_UpgradeEquipment;
+import org.worker.impl.bank.OC_WithdrawUpgrades;
 import org.worker.impl.fight.MagicFight;
 import org.worker.impl.fight.MeleeFight;
 import org.worker.impl.fight.RangeFight;
@@ -21,7 +22,7 @@ import viking.framework.worker.WorkerManager;
 public class OCWorkerManager extends WorkerManager<OrionCombat>
 {
 	private final OCWorker GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT,
-		LOOT, GO_TO_LOCATION;
+		LOOT, GO_TO_LOCATION, WITHDRAW_UPGRADES;
 	
 	private final OC_DepositItems DEPOSIT_ITEMS;
 	private final OC_UpgradeEquipment UPGRADE_EQUIPMENT;
@@ -37,6 +38,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		LOOT = new Loot(mission);
 		UPGRADE_EQUIPMENT = new OC_UpgradeEquipment(mission);
 		GO_TO_LOCATION = new OC_GoToLocation(mission);
+		WITHDRAW_UPGRADES = new OC_WithdrawUpgrades(mission);
 	}
 
 	@Override
