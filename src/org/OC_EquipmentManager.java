@@ -45,24 +45,34 @@ public class OC_EquipmentManager
 		for(int i = WEPS.length - 1; i >= 0; i--)
 		{
 			MeleeWeapon wep = WEPS[i];
-			if(wep.ATT_REQ <= s.getStatic(Skill.ATTACK) && !hasEquipped(wep.ITEM_ID) && hasItem(wep.ITEM_ID)
-					&& wep.ATT_REQ > bestWepAttReq)
-			{
-				upgrades.add(wep.ITEM_ID);
+			if(wep.ATT_REQ > s.getStatic(Skill.ATTACK) || wep.ATT_REQ < bestWepAttReq)
+				continue;
+			
+			boolean equipped = hasEquipped(wep.ITEM_ID);
+			boolean hasItem = hasItem(wep.ITEM_ID);
+			
+			if(equipped || hasItem)
 				bestWepAttReq = wep.ATT_REQ;
-			}
+			
+			if(!equipped && hasItem)
+				upgrades.add(wep.ITEM_ID);
 		}
 		
 		//armor next
 		for(int i = ARMOR.length - 1; i >= 0; i--)
 		{
 			MeleeArmor arm = ARMOR[i];
-			if(arm.DEF_LVL <= s.getStatic(Skill.DEFENCE) && !hasEquipped(arm.ITEM_ID) && hasItem(arm.ITEM_ID)
-					&& arm.DEF_LVL > bestArmorDefReq)
-			{
-				upgrades.add(arm.ITEM_ID);
+			if(arm.DEF_LVL > s.getStatic(Skill.DEFENCE) || arm.DEF_LVL < bestArmorDefReq)
+				continue;
+			
+			boolean equipped = hasEquipped(arm.ITEM_ID);
+			boolean hasItem = hasItem(arm.ITEM_ID);
+			
+			if(equipped || hasItem)
 				bestArmorDefReq = arm.DEF_LVL;
-			}
+			
+			if(!equipped && hasItem)
+				upgrades.add(arm.ITEM_ID);
 		}
 				
 		return upgrades;
