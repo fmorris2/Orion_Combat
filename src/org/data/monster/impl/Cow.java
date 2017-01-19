@@ -15,7 +15,7 @@ public class Cow extends Monster
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 15;
+		return 12;
 	}
 
 	@Override
