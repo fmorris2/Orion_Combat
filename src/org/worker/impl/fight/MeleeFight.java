@@ -34,7 +34,10 @@ public class MeleeFight extends OCWorker
 			NPC targ = (NPC)myPlayer().getInteracting();
 			if(targ != null && targ.getHealthPercent() <= 0 
 					&& Timing.waitCondition(() -> myPlayer().getInteracting() == null, 4000))
+			{
+				waitMs(random(1200, 1800));
 				mission.MANAGER.needsToLoot = true;
+			}
 		}
 		else
 		{
