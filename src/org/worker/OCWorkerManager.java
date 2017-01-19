@@ -57,7 +57,10 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		{
 			debug("Equipment upgrades available...");
 			if(UPGRADE_EQUIPMENT.needsBankTrip())
+			{
+				debug("Needs bank  trip...");
 				return IN_BANK ? WITHDRAW_UPGRADES : GO_TO_BANK;
+			}
 			
 			return UPGRADE_EQUIPMENT;
 		}
