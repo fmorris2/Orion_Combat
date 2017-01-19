@@ -1,8 +1,13 @@
 package org;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.data.enums.LOCATION;
 import org.data.enums.MONSTER;
 import org.data.enums.equipment.Food;
 import org.data.monster.Monster;
+import org.osbot.rs07.script.MethodProvider;
 
 public class OC_ProgressionManager
 {
@@ -29,7 +34,8 @@ public class OC_ProgressionManager
 		mission.setMonster(APPROP);
 		
 		//TODO QUERY OCC FOR APPROPRIATE LOCATION
-		mission.setLocation(MONSTER.getSupportedLocs(APPROP).get(0));
+		List<LOCATION> supported = MONSTER.getSupportedLocs(APPROP);
+		mission.setLocation(supported.get(MethodProvider.random(0, supported.size() - 1)));
 		
 		mission.getScript().log(this, false, "Progessing to " + APPROP + " at location " + mission.getLocEnum());
 		
