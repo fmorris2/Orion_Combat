@@ -49,7 +49,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	{
 		final boolean IN_BANK = mission.bankUtils.isInBank(false);
 		//check bank if cache is empty, if it is we need to go check the bank
-		if(mission.getScript().BANK_CACHE.get().isEmpty())
+		if(!mission.getLocation().isIn(myPlayer()) && mission.getScript().BANK_CACHE.get().isEmpty())
 		{
 			debug("Bank cache is empty, going to bank to fill it...");
 			return IN_BANK ? DEPOSIT_ITEMS : GO_TO_BANK;

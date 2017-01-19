@@ -42,11 +42,16 @@ public class SwitchCombatStyle extends OCWorker
 	public void work()
 	{
 		script.log(this, false, "Switch combat style");
-		current = goals.peek().getSkill();
-		String[] names = current == Skill.ATTACK ? ATT_STYLES : current == Skill.STRENGTH ? STR_STYLES : DEF_STYLES;
-		RS2Widget w = widgets.getWidgetContainingText(names);
-		if(w != null && w.interact())
-			Timing.waitCondition(() -> getCurrentIndex() == getIndex(current), 3500);
+		if(bank.isOpen())
+			bank.close();
+		else
+		{
+			current = goals.peek().getSkill();
+			String[] names = current == Skill.ATTACK ? ATT_STYLES : current == Skill.STRENGTH ? STR_STYLES : DEF_STYLES;
+			RS2Widget w = widgets.getWidgetContainingText(names);
+			if(w != null && w.interact())
+				Timing.waitCondition(() -> getCurrentIndex() == getIndex(current), 3500);
+		}
 	}
 	
 	public boolean needsSwitch()
