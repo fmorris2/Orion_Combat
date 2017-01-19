@@ -13,6 +13,7 @@ import org.worker.impl.bank.OC_WithdrawUpgrades;
 import org.worker.impl.fight.MagicFight;
 import org.worker.impl.fight.MeleeFight;
 import org.worker.impl.fight.RangeFight;
+import org.worker.impl.fight.SwitchCombatStyle;
 import org.worker.impl.location.OC_GoToLocation;
 import org.worker.impl.loot.Loot;
 
@@ -26,6 +27,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	
 	private final OC_DepositItems DEPOSIT_ITEMS;
 	private final OC_UpgradeEquipment UPGRADE_EQUIPMENT;
+	private final SwitchCombatStyle COMBAT_STYLE;
 	
 	public OCWorkerManager(OrionCombat mission)
 	{
@@ -39,6 +41,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		UPGRADE_EQUIPMENT = new OC_UpgradeEquipment(mission);
 		GO_TO_LOCATION = new OC_GoToLocation(mission);
 		WITHDRAW_UPGRADES = new OC_WithdrawUpgrades(mission);
+		COMBAT_STYLE = new SwitchCombatStyle(mission);
 	}
 
 	@Override
@@ -80,6 +83,10 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 			debug("Depositing erroneous items...");
 			return DEPOSIT_ITEMS;
 		}
+		
+		//check combat style
+		if(COMBAT_STYLE.needsSwitch())
+			return COMBAT_STYLE;
 		
 		//has required equipment, inventory is not full
 		return locChecks();
