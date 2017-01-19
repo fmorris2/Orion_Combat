@@ -31,6 +31,7 @@ public class MeleeFight extends OCWorker
 		if(combat.isFighting())
 		{
 			script.log(this, false, "Is fighting...");
+			mission.MANAGER.needsToLoot = true;
 		}
 		else
 		{
@@ -42,6 +43,7 @@ public class MeleeFight extends OCWorker
 			{
 				VCondition condition = conditions.IN_COMBAT.or(conditions.stolenEntity(target));
 				Timing.waitCondition(condition, 4500);
+				mission.MANAGER.needsToLoot = false;
 			}
 			else
 				script.log(this, false, "No targets found..");

@@ -22,12 +22,14 @@ import viking.framework.worker.WorkerManager;
 
 public class OCWorkerManager extends WorkerManager<OrionCombat>
 {
-	private final OCWorker GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT,
-		LOOT, GO_TO_LOCATION, WITHDRAW_UPGRADES;
+	private final OCWorker GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT, GO_TO_LOCATION, WITHDRAW_UPGRADES;
 	
 	private final OC_DepositItems DEPOSIT_ITEMS;
 	private final OC_UpgradeEquipment UPGRADE_EQUIPMENT;
 	private final SwitchCombatStyle COMBAT_STYLE;
+	private final Loot LOOT;
+	
+	public boolean needsToLoot;
 	
 	public OCWorkerManager(OrionCombat mission)
 	{
@@ -97,10 +99,18 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		CombatLocation loc = mission.getLocation();
 		if(loc.isIn(myPlayer()))
 		{
-			debug("Player is at location");
-			if(mission.COMBAT_TYPE == CombatType.MELEE) return MELEE_FIGHT;
-			if(mission.COMBAT_TYPE == CombatType.RANGE) return RANGE_FIGHT;
-			return MAGIC_FIGHT;
+			if(needsToLoot || LOOT.needsToLoot())
+			{
+				needsToLoot = false;
+				return LOOT;
+			}
+			else
+			{
+				debug("Player is at location");
+				if(mission.COMBAT_TYPE == CombatType.MELEE) return MELEE_FIGHT;
+				if(mission.COMBAT_TYPE == CombatType.RANGE) return RANGE_FIGHT;
+				return MAGIC_FIGHT;
+			}
 		}
 		else
 		{

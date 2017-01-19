@@ -26,8 +26,8 @@ public class OrionCombat extends Mission implements ItemManagement, MuleManageme
 	public final OC_EquipmentManager EQUIPMENT_MANAGER;
 	public final boolean IS_LOOTING;
 	public final MONSTER TARGET;
+	public final OCWorkerManager MANAGER;
 	
-	private final OCWorkerManager MANAGER;
 	private final OC_ProgressionManager PROGRESSION;
 	
 	public Food food;
