@@ -7,19 +7,19 @@ import viking.api.location.Location;
 
 public abstract class CombatLocation extends Location
 {
-	public final MONSTER SUPPORTED_MONSTER;
+	public final MONSTER[] SUPPORTED_MONSTERS;
 	public final int[] REQUIRED_ITEMS;
 	public final Position[] SAFE_SPOTS;
 	
 	public CombatLocation()
 	{
 		super();
-		SUPPORTED_MONSTER = getSupportedMonster();
+		SUPPORTED_MONSTERS = getSupportedMonsters();
 		REQUIRED_ITEMS = getRequiredItems();
 		SAFE_SPOTS = getSafeSpots();
 	}
 	
-	protected abstract MONSTER getSupportedMonster();
+	protected abstract MONSTER[] getSupportedMonsters();
 	protected abstract int[] getRequiredItems();
 	protected abstract Position[] getSafeSpots();
 }

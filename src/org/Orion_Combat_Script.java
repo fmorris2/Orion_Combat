@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import org.data.enums.CombatType;
+import org.data.enums.MONSTER;
 import org.osbot.rs07.script.ScriptManifest;
 
 import viking.framework.goal.impl.InfiniteGoal;
@@ -19,7 +20,7 @@ public class Orion_Combat_Script extends VikingScript
 	@Override
 	public Queue<Mission> generateMissions()
 	{
-		return new LinkedList<>(Arrays.asList(new OrionCombat(this, CombatType.MELEE, null, true, new InfiniteGoal())));
+		return new LinkedList<>(Arrays.asList(new OrionCombat(this, CombatType.MELEE, MONSTER.COW, true, new InfiniteGoal())));
 	}
 
 	@Override

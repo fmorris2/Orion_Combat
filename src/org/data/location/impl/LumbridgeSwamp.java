@@ -1,17 +1,17 @@
-package org.data.location.cow;
+package org.data.location.impl;
 
 import org.data.enums.MONSTER;
 import org.data.location.CombatLocation;
 import org.osbot.rs07.api.map.Area;
 import org.osbot.rs07.api.map.Position;
 
-public class FaladorCows extends CombatLocation
+public class LumbridgeSwamp extends CombatLocation
 {
 
 	@Override
 	protected MONSTER[] getSupportedMonsters()
 	{
-		return new MONSTER[]{MONSTER.COW};
+		return new MONSTER[]{MONSTER.WEAK_GIANT_RAT, MONSTER.NORMAL_FROG, MONSTER.BIG_FROG, MONSTER.GIANT_FROG};
 	}
 
 	@Override
@@ -29,15 +29,13 @@ public class FaladorCows extends CombatLocation
 	@Override
 	public Area constructArea()
 	{
-		return new Area(new int[][] { { 3022, 3297 }, { 3022, 3311 }, { 3023, 3312 }, { 3041, 3312 }, { 3042, 3311 },
-				{ 3042, 3300 }, { 3040, 3298 }, { 3039, 3299 }, { 3032, 3299 }, { 3031, 3298 }, { 3029, 3298 },
-				{ 3028, 3297 } });
+		return new Area(3156, 3201, 3237, 3159);
 	}
 
 	@Override
 	public Position getCenterTile()
 	{
-		return new Position(3031, 3305, 0);
+		return new Position(3200, 3179, 0);
 	}
 
 	@Override

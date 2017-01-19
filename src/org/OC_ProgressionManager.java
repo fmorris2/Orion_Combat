@@ -1,6 +1,5 @@
 package org;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.data.enums.LOCATION;
@@ -13,7 +12,7 @@ public class OC_ProgressionManager
 {
 	private OrionCombat mission;
 	
-	public OC_ProgressionManager(OrionCombat mission)
+	public OC_ProgressionManager(OrionCombat mission)	
 	{
 		this.mission = mission;
 	}

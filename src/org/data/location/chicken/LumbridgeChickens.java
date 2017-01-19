@@ -27,9 +27,9 @@ public class LumbridgeChickens extends CombatLocation
 	}
 
 	@Override
-	protected MONSTER getSupportedMonster()
+	protected MONSTER[] getSupportedMonsters()
 	{
-		return MONSTER.CHICKEN;
+		return new MONSTER[]{MONSTER.CHICKEN};
 	}
 
 	@Override

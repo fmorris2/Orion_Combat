@@ -6,12 +6,25 @@ import java.util.List;
 import org.data.monster.Monster;
 import org.data.monster.impl.Chicken;
 import org.data.monster.impl.Cow;
+import org.data.monster.impl.frog.impl.BigFrog;
+import org.data.monster.impl.frog.impl.GiantFrog;
+import org.data.monster.impl.frog.impl.NormalFrog;
+import org.data.monster.impl.giant_rat.impl.StrongGiantRat;
+import org.data.monster.impl.giant_rat.impl.WeakGiantRat;
+import org.data.monster.impl.goblin.impl.WeakGoblin;
 import org.osbot.rs07.api.Combat;
+import org.osbot.rs07.script.MethodProvider;
 
 public enum MONSTER
 {
 	CHICKEN(new Chicken()),
-	COW(new Cow());
+	COW(new Cow()),
+	WEAK_GIANT_RAT(new WeakGiantRat()),
+	STRONG_GIANT_RAT(new StrongGiantRat()),
+	NORMAL_FROG(new NormalFrog()),
+	BIG_FROG(new BigFrog()),
+	GIANT_FROG(new GiantFrog()),
+	WEAK_GOBLIN(new WeakGoblin());
 	
 	public final Monster MONSTER;
 	
@@ -22,20 +35,32 @@ public enum MONSTER
 	
 	public static MONSTER getAppropriate(Combat combat)
 	{
+		List<MONSTER> potentials = new ArrayList<>();
+		int bestLvl = -1;
 		final int PLAYER_LVL = combat.getCombatLevel();
 		for(int i = values().length - 1; i >= 0; i--)
-			if(values()[i].MONSTER.REQUIRED_COMBAT_LVL <= PLAYER_LVL)
-				return values()[i];
+		{
+			final int REQ_LVL = values()[i].MONSTER.REQUIRED_COMBAT_LVL;
+			if(REQ_LVL < bestLvl)
+				break;
+			
+			if(REQ_LVL <= PLAYER_LVL)
+			{
+				potentials.add(values()[i]);
+				bestLvl = REQ_LVL;
+			}
+		}
 		
-		return CHICKEN;
+		return potentials.get(MethodProvider.random(0, potentials.size() - 1));
 	}
 	
 	public static List<LOCATION> getSupportedLocs(MONSTER m)
 	{
 		List<LOCATION> supported = new ArrayList<>();
 		for(LOCATION loc : LOCATION.values())
-			if(loc.LOCATION.SUPPORTED_MONSTER == m)
-				supported.add(loc);
+			for(MONSTER mo : loc.LOCATION.SUPPORTED_MONSTERS)
+				if(mo == m)
+					supported.add(loc);
 		
 		return supported;
 	}

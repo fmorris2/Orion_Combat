@@ -9,9 +9,9 @@ public class LumbridgeCows extends CombatLocation
 {
 
 	@Override
-	protected MONSTER getSupportedMonster()
+	protected MONSTER[] getSupportedMonsters()
 	{
-		return MONSTER.COW;
+		return new MONSTER[]{MONSTER.COW};
 	}
 
 	@Override
