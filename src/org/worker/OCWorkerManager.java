@@ -20,8 +20,11 @@ import viking.framework.worker.WorkerManager;
 
 public class OCWorkerManager extends WorkerManager<OrionCombat>
 {
-	private final OCWorker DEPOSIT_ITEMS, GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT,
-		LOOT, UPGRADE_EQUIPMENT, GO_TO_LOCATION;
+	private final OCWorker GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT,
+		LOOT, GO_TO_LOCATION;
+	
+	private final OC_DepositItems DEPOSIT_ITEMS;
+	private final OC_UpgradeEquipment UPGRADE_EQUIPMENT;
 	
 	public OCWorkerManager(OrionCombat mission)
 	{
@@ -51,6 +54,9 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		if(!mission.EQUIPMENT_MANAGER.getUpgrades().isEmpty())
 		{
 			debug("Equipment upgrades available...");
+			if(UPGRADE_EQUIPMENT.needsBankTrip())
+				return IN_BANK ? WITHDRAW_UPGRADES : GO_TO_BANK;
+			
 			return UPGRADE_EQUIPMENT;
 		}
 		
@@ -93,7 +99,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	
 	private boolean hasErroneousItems()
 	{
-		List<Integer> dontDeposit = ((OC_DepositItems)DEPOSIT_ITEMS).getDontDepositList();
+		List<Integer> dontDeposit = DEPOSIT_ITEMS.getDontDepositList();
 		for(Item i : inventory.getItems())
 			if(i != null && !dontDeposit.contains(i.getId()))
 				return true;
