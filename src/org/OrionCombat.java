@@ -62,6 +62,9 @@ public class OrionCombat extends Mission implements ItemManagement, MuleManageme
 	@Override
 	public String getCurrentTaskName()
 	{
+		if(MANAGER.getCurrent() == null)
+			return "Starting up";
+		
 		return MANAGER.getCurrent().toString();
 	}
 
