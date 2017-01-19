@@ -9,7 +9,7 @@ public class Cow extends Monster
 	protected int[][] getLoot()
 	{
 		//cowhide is only thing worth looting
-		return new int[][]{{1739, 1}};
+		return new int[][]{{1739, 0}};
 	}
 
 	@Override
