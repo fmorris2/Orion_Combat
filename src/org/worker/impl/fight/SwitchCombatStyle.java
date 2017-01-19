@@ -43,6 +43,10 @@ public class SwitchCombatStyle extends OCWorker
 	public void work()
 	{
 		script.log(this, false, "Switch combat style");
+		
+		if(goals.peek().hasReached())
+			return;
+		
 		if(bank.isOpen())
 			bank.close();
 		else if(tabs.open(Tab.ATTACK))
