@@ -5,6 +5,8 @@ import org.data.location.CombatLocation;
 import org.osbot.rs07.api.map.Area;
 import org.osbot.rs07.api.map.Position;
 
+import viking.api.banking.enums.BankLocation;
+
 public class LumbridgeCows extends CombatLocation
 {
 
@@ -48,6 +50,12 @@ public class LumbridgeCows extends CombatLocation
 	public Position constructDepositBoxTile()
 	{
 		return null;
+	}
+
+	@Override
+	protected BankLocation getBank()
+	{
+		return BankLocation.LUMBRIDGE_UPPER;
 	}
 
 }

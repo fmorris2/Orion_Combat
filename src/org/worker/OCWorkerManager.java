@@ -22,7 +22,7 @@ import viking.framework.worker.WorkerManager;
 
 public class OCWorkerManager extends WorkerManager<OrionCombat>
 {
-	private final OCWorker GO_TO_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT, GO_TO_LOCATION, WITHDRAW_UPGRADES;
+	private final OCWorker GO_TO_NORMAL_BANK, GO_TO_ANY_BANK, MAGIC_FIGHT, MELEE_FIGHT, RANGE_FIGHT, GO_TO_LOCATION, WITHDRAW_UPGRADES;
 	
 	private final OC_DepositItems DEPOSIT_ITEMS;
 	private final OC_UpgradeEquipment UPGRADE_EQUIPMENT;
@@ -35,7 +35,8 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	{
 		super(mission);
 		DEPOSIT_ITEMS = new OC_DepositItems(mission);
-		GO_TO_BANK = new OC_GoToBank(mission);
+		GO_TO_NORMAL_BANK = new OC_GoToBank(mission, false);
+		GO_TO_ANY_BANK = new OC_GoToBank(mission, true);
 		MAGIC_FIGHT = new MagicFight(mission);
 		MELEE_FIGHT = new MeleeFight(mission);
 		RANGE_FIGHT = new RangeFight(mission);
@@ -50,11 +51,12 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 	public Worker<OrionCombat> decide()
 	{
 		final boolean IN_BANK = mission.bankUtils.isInBank(false);
+		final boolean IN_ANY_BANK = mission.bankUtils.isInBank(true);
 		//check bank if cache is empty, if it is we need to go check the bank
 		if(!mission.getLocation().isIn(myPlayer()) && mission.getScript().BANK_CACHE.get().isEmpty())
 		{
 			debug("Bank cache is empty, going to bank to fill it...");
-			return IN_BANK ? DEPOSIT_ITEMS : GO_TO_BANK;
+			return IN_BANK ? DEPOSIT_ITEMS : GO_TO_NORMAL_BANK;
 		}
 		
 		//check for equipment upgrades
@@ -64,7 +66,7 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 			if(UPGRADE_EQUIPMENT.needsBankTrip())
 			{
 				debug("Needs bank  trip...");
-				return IN_BANK ? WITHDRAW_UPGRADES : GO_TO_BANK;
+				return IN_BANK ? WITHDRAW_UPGRADES : GO_TO_NORMAL_BANK;
 			}
 			
 			return UPGRADE_EQUIPMENT;
@@ -74,13 +76,13 @@ public class OCWorkerManager extends WorkerManager<OrionCombat>
 		{
 			debug("Inventory full checks");
 			
-			if(IN_BANK)
+			if(IN_ANY_BANK)
 				return DEPOSIT_ITEMS;
 			
-			return GO_TO_BANK;
+			return GO_TO_ANY_BANK;
 		}
 		
-		if(IN_BANK && hasErroneousItems())
+		if(IN_ANY_BANK && hasErroneousItems())
 		{
 			debug("Depositing erroneous items...");
 			return DEPOSIT_ITEMS;
