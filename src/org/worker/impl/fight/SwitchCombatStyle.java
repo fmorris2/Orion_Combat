@@ -9,6 +9,7 @@ import java.util.Queue;
 import org.OrionCombat;
 import org.osbot.rs07.api.ui.RS2Widget;
 import org.osbot.rs07.api.ui.Skill;
+import org.osbot.rs07.api.ui.Tab;
 import org.worker.OCWorker;
 
 import viking.api.Timing;
@@ -44,7 +45,7 @@ public class SwitchCombatStyle extends OCWorker
 		script.log(this, false, "Switch combat style");
 		if(bank.isOpen())
 			bank.close();
-		else
+		else if(tabs.open(Tab.ATTACK))
 		{
 			current = goals.peek().getSkill();
 			String[] names = current == Skill.ATTACK ? ATT_STYLES : current == Skill.STRENGTH ? STR_STYLES : DEF_STYLES;
