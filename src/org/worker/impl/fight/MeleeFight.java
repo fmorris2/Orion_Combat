@@ -28,7 +28,7 @@ public class MeleeFight extends OCWorker
 	@Override
 	public void work()
 	{
-		if(combat.isFighting())
+		if(combat.isFighting() || myPlayer().isUnderAttack())
 		{
 			script.log(this, false, "Is fighting...");
 			mission.MANAGER.needsToLoot = true;
