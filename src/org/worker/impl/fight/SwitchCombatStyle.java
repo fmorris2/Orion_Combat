@@ -1,6 +1,9 @@
 package org.worker.impl.fight;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import org.OrionCombat;
@@ -68,9 +71,12 @@ public class SwitchCombatStyle extends OCWorker
 			str += random(1, 6);
 			def += random(1, 6);
 			
-			list.add(new SkillGoal(skills, Skill.ATTACK, att));
-			list.add(new SkillGoal(skills, Skill.STRENGTH, str));
-			list.add(new SkillGoal(skills, Skill.DEFENCE, def));
+			List<SkillGoal> shuffled = new ArrayList<>();
+			shuffled.add(new SkillGoal(skills, Skill.ATTACK, att));
+			shuffled.add(new SkillGoal(skills, Skill.STRENGTH, str));
+			shuffled.add(new SkillGoal(skills, Skill.DEFENCE, def));
+			Collections.shuffle(shuffled);
+			list.addAll(shuffled);
 		}
 		
 		script.log(this, false, "Generated " + list.size() + " combat style goals...");
