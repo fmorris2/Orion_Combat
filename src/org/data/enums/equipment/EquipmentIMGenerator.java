@@ -30,10 +30,10 @@ public class EquipmentIMGenerator
 		List<IMEntry> entries = new ArrayList<>();
 		
 		for(MeleeArmor armor : MeleeArmor.values())
-			entries.add(new IMEntry(m, armor.ITEM_ID, 1, armor.PRICE, armor.name().replaceAll("_", " "), new SkillGoal(m.skills, Skill.DEFENCE, armor.DEF_LVL)));
+			entries.add(new IMEntry(m, armor.ITEM_ID, 1, armor.PRICE, armor.name().replaceAll("_", " ").toLowerCase(), new SkillGoal(m.skills, Skill.DEFENCE, armor.DEF_LVL)));
 			
 		for(MeleeWeapon wep : MeleeWeapon.values())
-			entries.add(new IMEntry(m, wep.ITEM_ID, 1, wep.PRICE, wep.name().replaceAll("_", " "), new SkillGoal(m.skills, Skill.ATTACK, wep.ATT_REQ)));
+			entries.add(new IMEntry(m, wep.ITEM_ID, 1, wep.PRICE, wep.name().replaceAll("_", " ").toLowerCase(), new SkillGoal(m.skills, Skill.ATTACK, wep.ATT_REQ)));
 			
 		return entries.toArray(new IMEntry[entries.size()]);
 	}

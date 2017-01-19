@@ -26,6 +26,8 @@ public class OC_UpgradeEquipment extends OCWorker
 		
 		if(bank.isOpen())
 			bank.close();
+		else if(grandExchange.isOpen())
+			grandExchange.close();
 		else
 		{
 			script.log(this, false, "Equip upgrades");
