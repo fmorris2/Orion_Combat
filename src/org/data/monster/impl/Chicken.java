@@ -8,7 +8,7 @@ public class Chicken extends Monster
 	protected int[][] getLoot()
 	{
 		//bones, feather, raw chicken
-		return new int[][]{{526, 0}, {314, 1}, {2138, 0}};
+		return new int[][]{{526, 0}, {314, 0}, {2138, 0}};
 	}
 
 	@Override

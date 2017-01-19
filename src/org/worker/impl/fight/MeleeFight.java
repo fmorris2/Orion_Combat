@@ -35,7 +35,7 @@ public class MeleeFight extends OCWorker
 			if(targ != null && targ.getHealthPercent() <= 0 
 					&& Timing.waitCondition(() -> myPlayer().getInteracting() == null, 4000))
 			{
-				waitMs(random(1200, 1800));
+				waitMs(random(1800, 2400));
 				mission.MANAGER.needsToLoot = true;
 			}
 		}
