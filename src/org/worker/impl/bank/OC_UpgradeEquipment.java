@@ -15,7 +15,7 @@ public class OC_UpgradeEquipment extends OCWorker
 	@Override
 	public boolean needsRepeat()
 	{
-		return !mission.EQUIPMENT_MANAGER.getUpgrades().isEmpty();
+		return false;
 	}
 
 	@Override
