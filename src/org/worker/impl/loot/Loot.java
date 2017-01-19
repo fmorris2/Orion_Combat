@@ -36,9 +36,9 @@ public class Loot extends OCWorker
 			long invCount = inventory.getAmount(ID);
 			if(item != null && iFact.clickGroundItem("Take", item).execute())
 				Timing.waitCondition(() -> inventory.getAmount(ID) != invCount, 3500);
-			
-			mandatoryLoot = false;
 		}
+		
+		mandatoryLoot = false;
 	}
 	
 	//this method is for if something appears on the ground that we NEED to loot
