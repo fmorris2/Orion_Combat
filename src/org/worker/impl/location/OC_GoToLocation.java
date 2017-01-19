@@ -21,7 +21,7 @@ public class OC_GoToLocation extends OCWorker
 	@Override
 	public void work()
 	{
-		script.log(this, false, "Going to location!");
+		script.log(this, false, "Going to location");
 		CombatLocation l = mission.getLocation();
 		walkUtils.walkTo(l.getCenterTile(), mission.conditions.inAreaCondition(l.getArea()), null, 400, 400);
 	}
