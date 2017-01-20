@@ -37,7 +37,7 @@ public class EastLumbridgeGoblins extends CombatLocation
 	@Override
 	public Position getCenterTile()
 	{
-		return new Position(3254, 3239, 0);
+		return new Position(3253, 3243, 0);
 	}
 
 	@Override
