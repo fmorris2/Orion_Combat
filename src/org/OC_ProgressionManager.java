@@ -30,6 +30,9 @@ public class OC_ProgressionManager
 		if(OLD != null && (OLD == TARGET || OLD == NEW))
 			return false;
 		
+		if(OLD.REQUIRED_COMBAT_LVL == NEW.REQUIRED_COMBAT_LVL)
+			return false;
+		
 		mission.setMonster(APPROP);
 		
 		//TODO QUERY OCC FOR APPROPRIATE LOCATION
