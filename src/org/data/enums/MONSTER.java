@@ -6,6 +6,7 @@ import java.util.List;
 import org.data.monster.Monster;
 import org.data.monster.impl.Chicken;
 import org.data.monster.impl.Cow;
+import org.data.monster.impl.Seagull;
 import org.data.monster.impl.frog.impl.BigFrog;
 import org.data.monster.impl.frog.impl.GiantFrog;
 import org.data.monster.impl.frog.impl.NormalFrog;
@@ -24,7 +25,8 @@ public enum MONSTER
 	NORMAL_FROG(new NormalFrog()),
 	BIG_FROG(new BigFrog()),
 	GIANT_FROG(new GiantFrog()),
-	WEAK_GOBLIN(new WeakGoblin());
+	WEAK_GOBLIN(new WeakGoblin()),
+	SEAGULL(new Seagull());
 	
 	public final Monster MONSTER;
 	
