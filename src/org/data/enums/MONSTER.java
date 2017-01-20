@@ -40,15 +40,18 @@ public enum MONSTER
 		List<MONSTER> potentials = new ArrayList<>();
 		int bestLvl = -1;
 		final int PLAYER_LVL = combat.getCombatLevel();
-		for(int i = values().length - 1; i >= 0; i--)
+		for(MONSTER m : values())
 		{
-			final int REQ_LVL = values()[i].MONSTER.REQUIRED_COMBAT_LVL;
+			final int REQ_LVL = m.MONSTER.REQUIRED_COMBAT_LVL;
 			if(REQ_LVL < bestLvl)
-				break;
+				continue;
 			
 			if(REQ_LVL <= PLAYER_LVL)
 			{
-				potentials.add(values()[i]);
+				if(!potentials.isEmpty() && potentials.get(0).MONSTER.REQUIRED_COMBAT_LVL < REQ_LVL)
+					potentials.clear();
+				
+				potentials.add(m);
 				bestLvl = REQ_LVL;
 			}
 		}

@@ -23,14 +23,13 @@ public class OC_ProgressionManager
 		
 		final MONSTER APPROP = MONSTER.getAppropriate(mission.combat);
 		
-		final Monster OLD = mission.getMonsterEnum() == null ? null : mission.getMonster();
-		final Monster NEW = APPROP.MONSTER;
-		final Monster TARGET = mission.TARGET == null ? null : mission.TARGET.MONSTER;
+		final MONSTER OLD = mission.getMonsterEnum() == null ? null : mission.getMonsterEnum();
+		final MONSTER TARGET = mission.TARGET == null ? null : mission.TARGET;
 		
-		if(OLD != null && (OLD == TARGET || OLD == NEW))
+		if(OLD != null && (OLD == TARGET || OLD == APPROP))
 			return false;
 		
-		if(OLD != null && OLD.REQUIRED_COMBAT_LVL == NEW.REQUIRED_COMBAT_LVL && NEW != TARGET)
+		if(OLD != null && OLD.MONSTER.REQUIRED_COMBAT_LVL == APPROP.MONSTER.REQUIRED_COMBAT_LVL && APPROP != TARGET)
 			return false;
 		
 		mission.setMonster(APPROP);
