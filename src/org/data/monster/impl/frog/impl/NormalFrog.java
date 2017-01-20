@@ -8,7 +8,7 @@ public class NormalFrog extends Frog
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 10;
+		return 14;
 	}
 
 	@Override
