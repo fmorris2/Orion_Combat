@@ -23,11 +23,16 @@ public class OC_DepositItems extends OCWorker
 	@Override
 	public void work()
 	{		
-		if(bank.isOpen() || depositBox.isOpen())
+		int[] dontDeposit = getDontDeposit();
+		if(bank.isOpen())
 		{
-			int[] dontDeposit = getDontDeposit();
 			script.log(this, false, "Bank is open");
 			bank.depositAllExcept(dontDeposit);
+		}
+		else if(depositBox.isOpen())
+		{
+			script.log(this, false, "Deposit box is open");
+			depositBox.depositAllExcept(dontDeposit);
 		}
 		else if(bankUtils.isInBank(false))
 		{
