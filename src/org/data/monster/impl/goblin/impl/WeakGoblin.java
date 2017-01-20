@@ -8,7 +8,7 @@ public class WeakGoblin extends Goblin
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 7;
+		return 8;
 	}
 
 }
