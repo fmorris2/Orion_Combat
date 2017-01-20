@@ -8,7 +8,7 @@ public class GiantFrog extends Frog
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 16;
+		return 24;
 	}
 
 	@Override
