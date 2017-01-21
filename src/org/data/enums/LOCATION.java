@@ -9,6 +9,7 @@ import org.data.location.cow.LumbridgeCows;
 import org.data.location.cow.WindmillCows;
 import org.data.location.goblin.EastLumbridgeGoblins;
 import org.data.location.goblin.PortSarimGoblins;
+import org.data.location.impl.HillGiantDungeon;
 import org.data.location.impl.LumbridgeSwamp;
 import org.data.location.impl.PortSarimSeagulls;
 
@@ -23,7 +24,8 @@ public enum LOCATION
 	OC_WIN_CHICKS(new WindmillChickens()),
 	OC_FAL_CHICKS(new FaladorChickens()),
 	OC_PORT_SEAGULLS(new PortSarimSeagulls()),
-	OC_PORT_GOBLINS(new PortSarimGoblins());
+	OC_PORT_GOBLINS(new PortSarimGoblins()),
+	OC_HILL_DUNG(new HillGiantDungeon());
 	
 	public final CombatLocation LOCATION;
 	LOCATION(CombatLocation location)
