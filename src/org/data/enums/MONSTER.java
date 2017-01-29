@@ -58,6 +58,9 @@ public enum MONSTER
 			}
 		}
 		
+		if(potentials.size() == 0)
+			return CHICKEN;
+		
 		return potentials.get(MethodProvider.random(0, potentials.size() - 1));
 	}
 	

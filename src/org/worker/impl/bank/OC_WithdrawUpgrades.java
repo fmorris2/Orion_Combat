@@ -24,6 +24,8 @@ public class OC_WithdrawUpgrades extends OCWorker
 	{
 		if(!bank.isOpen())
 			bankUtils.open();
+		else if(inventory.isFull())
+			bank.depositAll();
 		else
 		{
 			try
