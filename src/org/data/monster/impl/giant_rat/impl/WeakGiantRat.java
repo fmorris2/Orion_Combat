@@ -8,7 +8,7 @@ public class WeakGiantRat extends GiantRat
 	@Override
 	protected int getRequiredCombatLvl()
 	{
-		return 10;
+		return 15;
 	}
 
 }
